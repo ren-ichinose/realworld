@@ -24,5 +24,11 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn
-      - run: yarn format
-      - run: yarn lint
+      - name: Format code
+        run: yarn format
+      - name: Lint code
+        run: yarn lint
+      - name: Run Unit test
+        run: yarn test
+      - name: Run E2E test 
+        run: yarn test:e2e
