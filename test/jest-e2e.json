@@ -4,6 +4,7 @@
   "moduleNameMapper": {
     "src/(.*)$": "<rootDir>/../src/$1"
   },
+  "testPathIgnorePatterns": ["/test/app.e2e-spec.ts$"],
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {

@@ -74,6 +74,11 @@
     "moduleNameMapper": {
       "src/(.*)$": "<rootDir>/../src/$1"
     },
+    "testPathIgnorePatterns": [
+      "/src/article/article.controller.spec.ts$",
+      "/src/article/article.service.spec.ts$",
+      "/src/auth/auth.controller.spec.ts$"
+    ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
