@@ -43,10 +43,11 @@ jobs:
       - name: Execute remote ssh commands
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.AWS_HOST_NAME }}
-          username: ${{ secrets.AWS_USER_NAME }}
-          key: ${{ secrets.AWS_SSH_KEY }}
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ${{ secrets.AWS_APP_DIR }}
-            git pull
+            cd ${{ secrets.APP_DIR }}
+            git fetch --all
+            git reset --hard origin/main
             yarn install
