@@ -1,4 +1,4 @@
-name: Node.js CI
+name: realworld CI/CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  ci:
 
     runs-on: ubuntu-latest
     env:
@@ -34,3 +34,19 @@ jobs:
         run: yarn test
       - name: Run E2E test 
         run: yarn test:e2e
+
+  cd:
+    needs: [ci] 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST_NAME }}
+          username: ${{ secrets.AWS_USER_NAME }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          script: |
+            cd ${{ secrets.AWS_APP_DIR }}
+            git pull
+            yarn install
