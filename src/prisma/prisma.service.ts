@@ -7,13 +7,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     await this.$connect();
   }
 
-  // SQLのログを出力するための設定（本番環境では削除する）
-  constructor() {
-    super({
-      log: ['query', 'info', 'warn', 'error'],
-    });
-  }
-
   async enableShutdownHooks(app: INestApplication) {
     this.$on('beforeExit', async () => {
       await app.close();
